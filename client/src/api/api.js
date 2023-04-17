@@ -47,7 +47,7 @@ export const getOrderDetail = async (params, config) => {
 }
 
 export const cashOrder = async (orderId, order, config) => {
-  const res = await instance.put(`/orders/${orderId}/paycash`, order, config)
+  const res = await instance.put(`/api/orders/${orderId}/paycash`, order, config)
   return res
 }
 export const paypalOrder = async (orderId, order, config) => {
