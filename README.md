@@ -1,7 +1,7 @@
 # footshop
 e-commerce fullstack
-Getting Started with Create React App
-This project was bootstrapped with Create React App.
+Getting Started with vite
+This project was bootstrapped with yarn create vite.
 
 Available Scripts
 In the project directory, you can run:
