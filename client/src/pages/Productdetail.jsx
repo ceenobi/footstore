@@ -12,6 +12,7 @@ export default function Productdetail() {
   const { slug } = useParams()
   const [productId, setProductId] = useState({})
   const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [current, setCurrent] = useState(0)
   const { addToCart } = useStateContext()
@@ -19,6 +20,7 @@ export default function Productdetail() {
 
   useEffect(() => {
     window.document.title = productId.title
+    window.scrollTo({ top: '0' })
     getSingleProduct(slug)
       .then((res) => {
         setProductId(res.data)

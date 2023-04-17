@@ -28,12 +28,12 @@ export default function SearchResult() {
     getProductBySearch(queryParams)
       .then((res) => {
         setResult(res.data)
-        setLoading(false)
       })
       .catch((error) => {
         console.log(error)
         setError(error)
       })
+      setLoading(false)
   }, [queryParams])
 
   return (
