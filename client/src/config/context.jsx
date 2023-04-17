@@ -29,7 +29,7 @@ export const StateProvider = ({ children }) => {
   const loginUser = async (name, password) => {
     try {
       dispatch({ type: 'REQUEST_LOGIN' })
-      const res = await instance.post('/auth/login', { name, password })
+      const res = await instance.post('/api/auth/login', { name, password })
       if (res) {
         dispatch({ type: 'LOGIN_SUCCESS', payload: res.data })
         toast.success('login success')
@@ -43,7 +43,7 @@ export const StateProvider = ({ children }) => {
   const registerUser = async (name, email, password) => {
     try {
       dispatch({ type: 'REQUEST_REGISTER' })
-      const res = await instance.post('/auth/register', {
+      const res = await instance.post('/api/auth/register', {
         name,
         email,
         password,
