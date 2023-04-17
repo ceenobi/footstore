@@ -12,6 +12,6 @@ Footshop is a simple ecommerce project designed to improve both front and backen
 
 set up env variable
 VITE_APP_BASEURL = http://localhost:8000/api
-VITE_PAYPAL_CLIENT_ID = your paypal cluent id
-MONGO_URI = mongodb+srv://<username>:<password>@cluster0.yivam.mongodb.net/shoestore?retryWrites=true&w=majority
+VITE_PAYPAL_CLIENT_ID = your paypal client id
+MONGO_URI = mongodb+srv://<username>:<password>@cluster0.yivam.mongodb.net/?retryWrites=true&w=majority
 JWT_SECRET = enter a secret key here

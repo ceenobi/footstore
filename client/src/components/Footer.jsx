@@ -8,9 +8,9 @@ export default function Footer() {
       <div className='border-0 border-top border-dark mb-3' />
       <div className='d-flex justify-content-between align-items-center'>
         <span>© 2023 Footshop™. All Rights Reserved.</span>
-        <div>
+        <a href='https://github.com/ceenobi/footstore' target='_blank'>
           <AiFillGithub size='1.8rem' />
-        </div>
+        </a>
       </div>
     </Container>
   )
