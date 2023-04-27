@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom'
 import { getAllProducts, getSingleProduct } from '../api/api'
 import Productcard from '../components/Productcard'
 import { formatCurrency } from '../utils/formatCurrency'
-// import shuffleShow from '../utils/shuffle'
 import { useStateContext } from '../config/context'
 
 export default function Productdetail() {
@@ -21,6 +20,7 @@ export default function Productdetail() {
   useEffect(() => {
     window.document.title = productId.title
     window.scrollTo({ top: '0' })
+    setLoading(true)
     getSingleProduct(slug)
       .then((res) => {
         setProductId(res.data)
@@ -29,6 +29,7 @@ export default function Productdetail() {
         console.log(error)
         setError(error)
       })
+    setLoading(false)
   }, [slug, productId.title])
 
   useEffect(() => {
