@@ -8,11 +8,9 @@ import Spinner from '../utils/Spinner'
 export default function Products() {
   const { name } = useParams()
   const [products, setProducts] = useState([])
-  const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   useEffect(() => {
     window.document.title = name
-    setLoading(true)
     getProductsByCategory(name)
       .then((res) => {
         setProducts(res.data)
@@ -21,7 +19,6 @@ export default function Products() {
         console.log(error)
         setError(error)
       })
-    setLoading(false)
   }, [name])
 
   return (
@@ -35,7 +32,7 @@ export default function Products() {
       </h1>
       <hr style={{ border: '1px solid black' }} />
       {error && <p>{error.message}</p>}
-      {loading && <Spinner />}
+      {!products && <Spinner />}
       <Row className='w-100 mx-auto'>
         {products.map((product) => (
           <Col md={4} key={product._id}>
