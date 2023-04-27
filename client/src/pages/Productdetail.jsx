@@ -6,11 +6,13 @@ import { getAllProducts, getSingleProduct } from '../api/api'
 import Productcard from '../components/Productcard'
 import { formatCurrency } from '../utils/formatCurrency'
 import { useStateContext } from '../config/context'
+import Spinner from '../utils/Spinner'
 
 export default function Productdetail() {
   const { slug } = useParams()
   const [productId, setProductId] = useState({})
   const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [current, setCurrent] = useState(0)
   const { addToCart } = useStateContext()
@@ -19,14 +21,15 @@ export default function Productdetail() {
   useEffect(() => {
     window.document.title = productId.title
     window.scrollTo({ top: '0' })
+    setLoading(true)
     getSingleProduct(slug)
       .then((res) => {
         setProductId(res.data)
       })
       .catch((error) => {
-        console.log(error)
         setError(error)
       })
+    setLoading(false)
   }, [slug, productId.title])
 
   useEffect(() => {
@@ -35,7 +38,6 @@ export default function Productdetail() {
         setProducts(res.data)
       })
       .catch((error) => {
-        console.log(error)
         setError(error)
       })
   }, [])
@@ -60,7 +62,7 @@ export default function Productdetail() {
   return (
     <Container className='mt-5 py-5'>
       {error && <p>{error.message}</p>}
-      {!productId && <Spinner />}
+      {loading && <Spinner/>}
       <Row className='w-100 mx-auto'>
         <Col md={6} lg={8}>
           <div className='d-lg-flex gap-4'>

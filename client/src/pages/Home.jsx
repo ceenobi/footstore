@@ -10,11 +10,12 @@ export default function Home() {
   const [hero, setHero] = useState([])
   const [casual, setCasual] = useState([])
   const [sandals, setSandals] = useState([])
-  // const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
   useEffect(() => {
     window.document.title = 'Home'
+    setLoading(true)
     getFeaturedProducts()
       .then((res) => {
         setHero(res.data)
@@ -22,6 +23,7 @@ export default function Home() {
       .catch((error) => {
         setError(error)
       })
+    setLoading(false)
   }, [])
 
   useEffect(() => {
@@ -59,7 +61,7 @@ export default function Home() {
       </h1>
       <hr style={{ border: '1px solid red' }} />
       {error && <p>{error.message}</p>}
-      {!hero && <Spinner />}
+      {loading && <Spinner />}
       <Row className='w-100 mx-auto'>
         {heroProduct.map((product) => (
           <Col md={6} key={product._id}>
