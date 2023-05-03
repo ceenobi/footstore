@@ -21,7 +21,7 @@ export default function Products() {
         console.log(error)
         setError(error)
       })
-    setLoading(true)
+    setLoading(false)
   }, [name])
 
   return (
