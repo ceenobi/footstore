@@ -174,6 +174,7 @@ export const StateProvider = ({ children }) => {
   //reset order
   const resetOrder = () => {
     setCartItems([])
+    setPaymentMethod('')
   }
 
   return (
