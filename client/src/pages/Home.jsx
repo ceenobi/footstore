@@ -10,12 +10,11 @@ export default function Home() {
   const [hero, setHero] = useState([])
   const [casual, setCasual] = useState([])
   const [sandals, setSandals] = useState([])
-  const [loading, setLoading] = useState(false)
+  // const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
   useEffect(() => {
     window.document.title = 'Home'
-    setLoading(true)
     getFeaturedProducts()
       .then((res) => {
         setHero(res.data)
@@ -23,7 +22,6 @@ export default function Home() {
       .catch((error) => {
         setError(error)
       })
-    setLoading(false)
   }, [])
 
   useEffect(() => {
@@ -47,6 +45,8 @@ export default function Home() {
   )
   const slipons = sandals?.filter((product) => product.category === 'Sandals')
 
+  if (!hero | !casual | !sandals) return <Spinner />
+
   return (
     <Container className='mt-5 py-5'>
       <div className='border border-danger px-2 logo-width'>
@@ -61,7 +61,6 @@ export default function Home() {
       </h1>
       <hr style={{ border: '1px solid red' }} />
       {error && <p>{error.message}</p>}
-      {loading && <Spinner />}
       <Row className='w-100 mx-auto'>
         {heroProduct.map((product) => (
           <Col md={6} key={product._id}>
@@ -103,7 +102,7 @@ export default function Home() {
       <p className='texting'>Feel chic on these, smooth comfort all day.</p>
       <Row className='w-100 mx-auto'>
         {slipons.slice(0, 4).map((product) => (
-          <Col md={6} key={product._id}>
+          <Col md={6} lg={4} key={product._id}>
             <Productcard {...product} />
           </Col>
         ))}

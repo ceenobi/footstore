@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Container, Form, Image, Row } from 'react-bootstrap'
+import { Button, Col, Container, Form, Image, Row } from 'react-bootstrap'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { getProductBySearch } from '../api/api'
 import Spinner from '../utils/Spinner'
@@ -33,7 +33,7 @@ export default function SearchResult() {
         console.log(error)
         setError(error)
       })
-      setLoading(false)
+    setLoading(false)
   }, [queryParams])
 
   return (
@@ -41,7 +41,7 @@ export default function SearchResult() {
       <div>
         <p className='fw-light'>RESULT FOR:</p>
         <div className='border-0 border-bottom border-danger w-100 d-flex gap-4 align-items-center'>
-          <Form onSubmit={handleSubmit} className='w-100'>
+          <Form onSubmit={handleSubmit} className='w-100 d-flex'>
             <input
               type='text'
               placeholder='Search Footstore...'
@@ -49,8 +49,10 @@ export default function SearchResult() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
+            <Button variant='none' type='submit'>
+              <FiSearch size='1.8rem' />
+            </Button>
           </Form>
-          <FiSearch className=' cursor' size='1.8rem' type='submit' />
         </div>
         {loading && <Spinner />}
         {error && <p className='mt-5 py-5'>{error.message}</p>}

@@ -9,10 +9,9 @@ export default function Products() {
   const { name } = useParams()
   const [products, setProducts] = useState([])
   const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(false)
+  // const [loading, setLoading] = useState(false)
   useEffect(() => {
     window.document.title = name
-    setLoading(true)
     getProductsByCategory(name)
       .then((res) => {
         setProducts(res.data)
@@ -21,8 +20,9 @@ export default function Products() {
         console.log(error)
         setError(error)
       })
-    setLoading(false)
   }, [name])
+
+  if(!products) return <Spinner/>
 
   return (
     <Container className='mt-5 py-5'>
@@ -35,7 +35,6 @@ export default function Products() {
       </h1>
       <hr style={{ border: '1px solid black' }} />
       {error && <p>{error.message}</p>}
-      {loading && <Spinner />}
       <Row className='w-100 mx-auto'>
         {products.map((product) => (
           <Col md={4} key={product._id}>

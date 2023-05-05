@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Modal, Accordion, Form } from 'react-bootstrap'
+import { Modal, Accordion, Form, Button } from 'react-bootstrap'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { FiSearch } from 'react-icons/fi'
 import { AiOutlineClose } from 'react-icons/ai'
@@ -46,24 +46,11 @@ export default function Sidebar() {
         <Modal.Header className='bgModal'>
           <Modal.Title className='w-100'>
             {showSearch ? (
-              <div className='d-flex align-items-center gap-4'>
-                <Link to='/' onClick={handleClose} className='flex-grow-1'>
-                  <h1 className='fw-bold heading text-danger'>Footshop</h1>
-                </Link>
-                <span
-                  className='fs-4 cursor fw-light'
-                  onClick={() => setShowSearch(!showSearch)}
-                >
-                  SEARCH
-                </span>
-                <span className='fs-4 cursor fw-light' onClick={handleClose}>
-                  CLOSE
-                </span>
-              </div>
-            ) : (
               <div className='border-0 border-bottom border-dark w-100 d-flex gap-4 align-items-center'>
-                <FiSearch type='submit' className='' size='1.8rem' />
-                <Form onSubmit={handleSubmit} className='w-100'>
+                <Form onSubmit={handleSubmit} className='w-100 d-flex '>
+                  <Button variant='none' type='submit'>
+                    <FiSearch size='1.8rem' />
+                  </Button>
                   <input
                     type='text'
                     placeholder='Search Footstore...'
@@ -80,6 +67,21 @@ export default function Sidebar() {
                     setSearchQuery('')
                   }}
                 />
+              </div>
+            ) : (
+              <div className='d-flex align-items-center gap-4'>
+                <Link to='/' onClick={handleClose} className='flex-grow-1'>
+                  <h1 className='fw-bold heading text-danger'>Footshop</h1>
+                </Link>
+                <span
+                  className='fs-4 cursor fw-light'
+                  onClick={() => setShowSearch(!showSearch)}
+                >
+                  SEARCH
+                </span>
+                <span className='fs-4 cursor fw-light' onClick={handleClose}>
+                  CLOSE
+                </span>
               </div>
             )}
           </Modal.Title>
